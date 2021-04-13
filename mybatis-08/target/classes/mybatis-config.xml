@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties"/>
+
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/><!--标准的日志工厂实现-->
+    </settings>
+
+    <typeAliases>
+        <package name="com.guighost.pojo"/>
+    </typeAliases>
+
+<!--environments：环境复数（可以有多套，通过default属性指定）-->
+    <environments default="development">
+        <environment id="development">
+<!--            transactionManager：事务管理器：这里采用JDBC的-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+<!--        <mapper resource="com.guighost.dao\TeacherMapper.xml"/>&lt;!&ndash;注意：resource="中不能有通配符"&ndash;&gt;-->
+<!--        <mapper class="com.guighost.dao.TeacherMapper"/>-->
+<!--        <mapper class="com.guighost.dao.StudentMapper"/>-->
+        <mapper resource="com.guighost.dao\TeacherMapper.xml"/>
+        <mapper resource="com.guighost.dao\StudentMapper.xml"/>
+    </mappers>
+</configuration>

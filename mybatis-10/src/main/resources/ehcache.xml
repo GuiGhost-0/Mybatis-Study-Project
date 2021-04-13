@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://www.ehcache.org/ehcache.xsd"
+         updateCheck="false">
+
+    <!--
+        diskStore：为缓存路径，ehcache分为内存和硬盘两级，此属性定义磁盘存储位置
+        参数解释如下：
+        user.home：用户主目录
+        user.dir：用户当前工作目录
+        java.io.tmpdir：默认临时文件路径
+    -->
+    <diskStore></diskStore>
+</ehcache>

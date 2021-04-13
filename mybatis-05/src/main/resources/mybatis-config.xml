@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--configuration核心配置文件-->
+<configuration>
+    <!--引入外部配置文件-->
+    <properties resource="db.properties">
+        <property name="username" value="root"/>
+        <property name="password" value="ghost"/>
+    </properties>
+    
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/><!--开启驼峰命名-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>&lt;!&ndash;标准的日志工厂实现&ndash;&gt;-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+<!--    &lt;!&ndash;可以给实体类起别名&ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        <typeAlias type="com.guighost.pojo.User" alias="User"/>-->
+<!--    </typeAliases>-->
+    <typeAliases>
+        <package name="com.guighost.pojo"/>
+    </typeAliases>
+
+<!--environments：环境复数（可以有多套，通过default属性指定）-->
+    <environments default="development">
+        <environment id="development">
+<!--            transactionManager：事务管理器：这里采用JDBC的-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="test">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="ghost"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+<!--    &lt;!&ndash;每一个Mapper.xml文件都需要在Mybatis核心配置文件中注册&ndash;&gt;-->
+<!--    <mappers>-->
+<!--&lt;!&ndash;        <mapper resource="com/guighost/dao/UserMapper.xml"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <mapper class="com.guighost.dao.UserMapper"/>&ndash;&gt;-->
+<!--        <package name="com.guighost.dao"/>-->
+<!--    </mappers>-->
+
+    <mappers>
+        <mapper class="com.guighost.dao.UserMapper"/>
+    </mappers>
+</configuration>
